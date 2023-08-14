@@ -35,9 +35,17 @@ console.log(x[0] === y[0]) // true
 
 
 function deepDup(arr) {
-  // Your code here 
+  // Your code here
+  if(arr.length ===0){
+  return;
+  };
+  console.log(arr[0])
+return deepDup(arr.slice(0))
 }
 
+let x = [1, 2, 3];
+let y = x.slice();
+console.log(x[0] === y[0]) // true
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
