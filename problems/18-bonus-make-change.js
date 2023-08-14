@@ -56,8 +56,37 @@ combinations.
 ***********************************************************************/
 
 function makeBetterChange(target, coins = [25, 10, 5, 1]) {
-  // Your code here 
+  // Your code here
+  if (target === 0) {
+    return [];
+  } else if (target < 0) {
+    return null;
+  } else if (coins.length === 0) {
+    return null;
+  } else {
+    const coin = coins[0];
+    const remainingCoins = coins.slice(1);
+    const result1 = makeBetterChange(target - coin, coins);
+    const result2 = makeBetterChange(target, remainingCoins);
+    if (result1 === null && result2 === null) {
+      return null;
+    } else if (result1 === null) {
+      return result2;
+    } else if (result2 === null) {
+      return [coin].concat(result1);
+    } else {
+      const sum1 = result1.reduce((acc, curr) => acc + curr, 0);
+      const sum2 = result2.reduce((acc, curr) => acc + curr, 0);
+      if (sum1 + coin <= sum2) {
+        return [coin].concat(result1);
+      } else {
+        return result2;
+      }
+    }
+  }
 }
+
+
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/

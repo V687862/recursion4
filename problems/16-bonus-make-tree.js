@@ -72,7 +72,10 @@ const makeTree = (categories, parent) => {
 
   );
   return tree
+
+
 };
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = makeTree;
