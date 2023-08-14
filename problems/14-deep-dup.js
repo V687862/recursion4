@@ -36,16 +36,23 @@ console.log(x[0] === y[0]) // true
 
 function deepDup(arr) {
   // Your code here
-  if(arr.length ===0){
-  return;
+  if (!(arr instanceof Array)){
+  return arr;
   };
-  console.log(arr[0])
-return deepDup(arr.slice(0))
+
+   return arr.map(item =>
+   item instanceof Array ? deepDup(item) : item
+  )
+
 }
 
-let x = [1, 2, 3];
-let y = x.slice();
-console.log(x[0] === y[0]) // true
+
+
+let arr = [[1], [2, [3]]];
+duped = deepDup(arr); // [[1], [2, [3]]]
+arr[0] === duped[0] // false
+arr[1] === duped[1] // false
+arr[1][1] === duped[1][1] // false
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
