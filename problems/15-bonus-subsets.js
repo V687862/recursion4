@@ -18,15 +18,13 @@ Hint: For subsets([1, 2, 3]), there are two kinds of subsets:
 
 const subsets = (arr) => {
   // Your code here
-// if the array is empty return a subset arrey
-  arr.length === 0 ? [[]] :
+  // if the array is empty return a subset arrey
+  return arr.length === 0 ?
+    [[]] :
 
-  [...subsets(arr.slice(0, arr.length-1)),
-  ...subsets(arr.slice(0, arr.length-1)).map(sub =>[...sub, arr[arr.length-1]])
-  ]
-
-
-
+    [...subsets(arr.slice(0, arr.length - 1)),
+    ...subsets(arr.slice(0, arr.length - 1)).map(sub => [...sub, arr[arr.length - 1]])
+    ]
 }
 
 console.log(subsets([])) // [[]]
