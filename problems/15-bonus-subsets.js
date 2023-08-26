@@ -29,8 +29,8 @@ const subsets = (arr) => {
 
 console.log(subsets([])) // [[]]
 console.log(subsets([1])) // [[], [1]]
-subsets([1, 2]) // [[], [1], [2], [1, 2]]
-subsets([1, 2, 3]) // [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+console.log(subsets([1, 2])) // [[], [1], [2], [1, 2]]
+console.log(subsets([1, 2, 3])) // [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/

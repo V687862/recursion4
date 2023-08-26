@@ -54,6 +54,13 @@ arr[0] === duped[0] // false
 arr[1] === duped[1] // false
 arr[1][1] === duped[1][1] // false
 
+const original = [1, [2, [3, 4], 5], 6];
+const duplicated = deepDup(original);
+
+console.log(duplicated); // [1, [2, [3, 4], 5], 6]
+console.log(original[1] === duplicated[1]); // false
+
+
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = deepDup;

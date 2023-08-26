@@ -73,9 +73,20 @@ const makeTree = (categories, parent) => {
   );
   return tree
 
-
 };
 
+const categories = [
+    { id: 'animals', 'parent': null },
+    { id: 'mammals', 'parent': 'animals' },
+    { id: 'cats', 'parent': 'mammals' },
+    { id: 'dogs', 'parent': 'mammals' },
+    { id: 'chihuahua', 'parent': 'dogs' },
+    { id: 'labrador', 'parent': 'dogs' },
+    { id: 'persian', 'parent': 'cats' },
+    { id: 'siamese', 'parent': 'cats' }
+];
+
+console.log(JSON.stringify(makeTree(categories, null), null, 2));
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = makeTree;

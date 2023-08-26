@@ -75,9 +75,7 @@ function makeBetterChange(target, coins = [25, 10, 5, 1]) {
     } else if (result2 === null) {
       return [coin].concat(result1);
     } else {
-      const sum1 = result1.reduce((acc, curr) => acc + curr, 0);
-      const sum2 = result2.reduce((acc, curr) => acc + curr, 0);
-      if (sum1 + coin <= sum2) {
+      if (result1.length + 1 <= result2.length) {
         return [coin].concat(result1);
       } else {
         return result2;
@@ -86,40 +84,37 @@ function makeBetterChange(target, coins = [25, 10, 5, 1]) {
   }
 }
 
-const makeBetterChange = (target, coins = [25, 10, 5, 1]) => {
-  // If the target amount is 0, return an empty array as the change
-  if (target === 0) return [];
+// const makeBetterChange = (target, coins = [25, 10, 5, 1]) => {
+//   // If the target amount is 0, return an empty arra4
+//   // Sort the coins in descending order so we can start with the highest denomination
+//   const sortedCoins = coins.sort((a, b) => b - a);
+//   // Initialize a variable to keep track of the best (smallest number of coins) change found so far
+//   let bestChange = null;
 
-  // Sort the coins in descending order so we can start with the highest denomination
-  const sortedCoins = coins.sort((a, b) => b - a);
-  // Initialize a variable to keep track of the best (smallest number of coins) change found so far
-  let bestChange = null;
+//   // Iterate over each coin denomination
+//   sortedCoins.forEach(coin => {
+//     // If the current coin denomination is greater than the target, skip this iteration
+//     if (coin > target) return;
 
-  // Iterate over each coin denomination
-  sortedCoins.forEach(coin => {
-    // If the current coin denomination is greater than the target, skip this iteration
-    if (coin > target) return;
+//     // Calculate the remaining amount after using one coin of the current denomination
+//     const remainder = target - coin;4change for the remaining amount
+//     // (pass only denominations less than or equal to the current coin to the recursive call)
+//     const bestChangeForRest = makeBetterChange(remainder, sortedCoins.filter(val => val <= coin));
 
-    // Calculate the remaining amount after using one coin of the current denomination
-    const remainder = target - coin;
-    // Recursively try to find the best change for the remaining amount
-    // (pass only denominations less than or equal to the current coin to the recursive call)
-    const bestChangeForRest = makeBetterChange(remainder, sortedCoins.filter(val => val <= coin));
+//     // If no change was found for the remaining amount, skip this iteration
+//     if (!bestChangeForRest) return;
 
-    // If no change was found for the remaining amount, skip this iteration
-    if (!bestChangeForRest) return;
+//     // Combine the current coin with the change found for the remaining amount to form the change for the current target
+//     const thisChange = [coin, ...bestChangeForRest];
+//     // Update the bestChange if the current change has fewer coins than the previously found best change
+//     bestChange = (!bestChange || thisChange.length < bestChange.length) ? thisChange : bestChange;
+//   });
 
-    // Combine the current coin with the change found for the remaining amount to form the change for the current target
-    const thisChange = [coin, ...bestChangeForRest];
-    // Update the bestChange if the current change has fewer coins than the previously found best change
-    bestChange = (!bestChange || thisChange.length < bestChange.length) ? thisChange : bestChange;
-  });
+//   // Return the best change found
+//   return bestChange;
+// }
 
-  // Return the best change found
-  return bestChange;
-}
-
-const greedyMakeChange = (target, coins = [25, 10, 5, 1]) => {
+const makeGreedyChange = (target, coins = [25, 10, 5, 1]) => {
   let result = [];
   coins = coins.sort((a, b) => b - a);
   let remaining = target;
@@ -133,6 +128,9 @@ const greedyMakeChange = (target, coins = [25, 10, 5, 1]) => {
   }
   return remaining === 0 ? result : null;
 };
+
+console.log(makeGreedyChange(26)); // [10, 10, 1]
+console.log(makeBetterChange(26));
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
