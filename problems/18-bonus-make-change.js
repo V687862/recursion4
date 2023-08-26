@@ -86,7 +86,26 @@ function makeBetterChange(target, coins = [25, 10, 5, 1]) {
   }
 }
 
-
+const makeBetterChange = (target, coins = [25, 10, 5, 1]) => {
+  if (target === 0) return [];
+  
+  const sortedCoins = coins.sort((a, b) => b - a);
+  let bestChange = null;
+  
+  sortedCoins.forEach(coin => {
+  if (coin > target) return;
+  
+  const remainder = target - coin;
+  const bestChangeForRest = makeBetterChange(remainder, sortedCoins.filter(val => val <= coin));
+  
+  if (!bestChangeForRest) return;
+  
+  const thisChange = [coin, ...bestChangeForRest];
+  bestChange = (!bestChange || thisChange.length < bestChange.length) ? thisChange : bestChange;
+  });
+  
+  return bestChange;
+  }
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
