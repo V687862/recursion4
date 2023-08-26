@@ -119,7 +119,20 @@ const makeBetterChange = (target, coins = [25, 10, 5, 1]) => {
   return bestChange;
 }
 
+const greedyMakeChange = (target, coins = [25, 10, 5, 1]) => {
+  let result = [];
+  coins = coins.sort((a, b) => b - a);
+  let remaining = target;
 
+  for (const coin of coins) {
+    const numCoins = Math.floor(remaining / coin);
+    for (let i = 0; i < numCoins; i++) {
+      result.push(coin);
+    }
+    remaining %= coin;
+  }
+  return remaining === 0 ? result : null;
+};
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
